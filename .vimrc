@@ -69,4 +69,3 @@ map <Leader>q :q<CR>           " Cierra el archivo
 
 
 
-
