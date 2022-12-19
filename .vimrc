@@ -75,7 +75,6 @@ map <Leader>q :q<CR>            " Cierra el archivo
 call plug#begin()
 
 " Plugins para temas
-Plug 'jpo/vim-railscasts-theme'       " Railscasts
 Plug 'morhetz/gruvbox'                " Gruvbox
 
 " Plugins para directorios y arhcivos
@@ -97,5 +96,7 @@ call plug#end()
 " TEMA DEL EDITOR
 
 "colorscheme gruvbox 
-colorscheme railscasts
+colorscheme railscasts                                       " Obtenido de https://github.com/jpo/vim-railscasts-theme. Instalado manualmente en .vim/colors/
+hi User1 ctermbg=233 ctermfg=214 guibg=#121212 guifg=#ffaf00 " Statusbar para railscasts 
+                                                             " Cambia la statusbar por defecto por una del mismo color que el fondo y letras naranjas
 
