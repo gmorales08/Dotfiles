@@ -1,4 +1,4 @@
-.vim/undodir
+.vim/undodir/*
 .vim/plugged
 .vim/autoload
 .vim/.netrwhist
