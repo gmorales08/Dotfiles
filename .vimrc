@@ -86,7 +86,7 @@ Plug 'junegunn/fzf.vim'               " FuzzyFinder. Busqueda de archivos inteli
 
 " Plugins para el editor
 Plug 'christoomey/vim-tmux-navigator' " Permite navegar entre ventanas con la tecla ctrl + h/j/k/l
-Plug 'editorconfig/editorconfig-vim'  " Permite utilizar .editorconfig
+Plug 'editorconfig/editorconfig-vim'  " Permite utilizar editorconfig
 
 " Plugins para programacion
 Plug 'valloric/youcompleteme'         " Autocompletado
@@ -96,7 +96,6 @@ call plug#end()
 
 " TEMA DEL EDITOR
 
-"set background=light                 " Tipo de tema dark/light
 "colorscheme gruvbox 
 colorscheme railscasts
 
