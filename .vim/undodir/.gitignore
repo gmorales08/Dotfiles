@@ -1,0 +1,4 @@
+# Este gitignore sirve para que git pueda agregar el directorio, pero no su contenido, ya que por defecto no permite agregar directorios vacios
+# Para que el directorio no este vacio, excluyo todos los archivos menos este gitignore
+*
+!.gitignore
