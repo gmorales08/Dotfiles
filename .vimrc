@@ -50,7 +50,7 @@ set statusline+=:
 set statusline+=%c
 set statusline+=\ 
 set statusline+=%P
-hi User1 ctermbg=black ctermfg=yellow guibg=black guifg=yellow " Configuracion de color de la status bar
+"hi User1 ctermbg=black ctermfg=yellow guibg=black guifg=yellow " Configuracion de color de la status bar
 
 
 " ATAJOS PERSONALIZADOS
@@ -96,7 +96,5 @@ call plug#end()
 " TEMA DEL EDITOR
 
 "colorscheme gruvbox 
-colorscheme railscasts                                       " Obtenido de https://github.com/jpo/vim-railscasts-theme. Instalado manualmente en .vim/colors/
-hi User1 ctermbg=233 ctermfg=214 guibg=#121212 guifg=#ffaf00 " Statusbar para railscasts 
-                                                             " Cambia la statusbar por defecto por una del mismo color que el fondo y letras naranjas
-
+colorscheme railscasts                " Obtenido de https://github.com/jpo/vim-railscasts-theme. Instalado manualmente en .vim/colors/
+                                      " Si el tema no carga al iniciar vim, crear un directorio .vim/after y mover .vim/colors alli
