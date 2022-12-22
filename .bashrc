@@ -5,6 +5,7 @@
 ##########################################
 
 # COLORES
+
 # Identificados por los codigos ansi: https://en.wikipedia.org/wiki/ANSI_escape_code#Colors
 
 NOCOLOR="\033[0m"
@@ -50,6 +51,6 @@ fi
 
 # COMANDOS QUE SE EJECUTAN AL INICIAR LA TERMINAL
 
-neofetch
+# neofetch
 
 
