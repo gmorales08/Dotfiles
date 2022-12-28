@@ -3,3 +3,5 @@
 	email = 888.gmd@gmail.com
 [init]
 	defaultBranch = main
+[credential]
+	helper = cache # Cachea los token de github

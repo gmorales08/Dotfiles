@@ -39,6 +39,9 @@ set showcmd                      " Muestra las teclas especiales pulsdas en la e
 
 set wildmenu                     " Cuando se escriben comandos en vim con :, se muestra un menu horizontal con las opciones disponibles
 set wildmode=longest:full,full   " Formato de la lista de wildmenu
+set hlsearch                     " Para que cuando se busque algo con / se marquen todas las ocurrencias
+
+set t_Co=256                     " Permite que la terminal muestra 256 colores"
 
 
 " STATUS BAR                     " Generada desde https://www.tdaly.co.uk/projects/vim-statusline-generator/
@@ -55,17 +58,88 @@ set statusline+=:
 set statusline+=%c
 set statusline+=\ 
 set statusline+=%P
-"hi User1 ctermbg=black ctermfg=yellow guibg=black guifg=yellow " Configuracion de color de la status bar
+
+
+" TAB BAR
+
+" Funcion que genera una tabbar cuando se abren buffers en tabs.
+" Solo muestra buffers activos
+" Los titulos de los tabs muestran el nombre del fichero y un * si esta modificado
+" Se puede pulsar sobre los tabs para acceder a ellos
+set tabline=%!MyTabLine()  " custom tab pages line
+function! MyTabLine()
+  let s = ''
+  " loop through each tab page
+  for i in range(tabpagenr('$'))
+    if i + 1 == tabpagenr()
+      let s .= '%#TabLineSel#'
+    else
+      let s .= '%#TabLine#'
+    endif
+    if i + 1 == tabpagenr()
+      let s .= '%#TabLineSel#' " WildMenu
+    else
+      let s .= '%#Title#'
+    endif
+    " set the tab page number (for mouse clicks)
+    let s .= '%' . (i + 1) . 'T '
+    " set page number string
+    let s .= i + 1 . ''
+    " get buffer names and statuses
+    let n = ''  " temp str for buf names
+    let m = 0   " &modified counter
+    let buflist = tabpagebuflist(i + 1)
+    " loop through each buffer in a tab
+    for b in buflist
+      if getbufvar(b, "&buftype") == 'help'
+        " let n .= '[H]' . fnamemodify(bufname(b), ':t:s/.txt$//')
+      elseif getbufvar(b, "&buftype") == 'quickfix'
+        " let n .= '[Q]'
+      elseif getbufvar(b, "&modifiable")
+        let n .= fnamemodify(bufname(b), ':t') . ', ' " pathshorten(bufname(b))
+      endif
+      if getbufvar(b, "&modified")
+        let m += 1
+      endif
+    endfor
+    " let n .= fnamemodify(bufname(buflist[tabpagewinnr(i + 1) - 1]), ':t')
+    let n = substitute(n, ', $', '', '')
+    " add modified label
+    if m > 0
+      let n .= '*'
+      " let s .= '[' . m . '+]'
+    endif
+    if i + 1 == tabpagenr()
+      let s .= ' %#TabLineSel#'
+    else
+      let s .= ' %#TabLine#'
+    endif
+    " add buffer names
+    if n == ''
+      let s.= '[New]'
+    else
+      let s .= n
+    endif
+    " switch to no underlining and add final space
+    let s .= ' '
+  endfor
+  let s .= '%#TabLineFill#%T'
+  " right-aligned close button
+  " if tabpagenr('$') > 1
+  "   let s .= '%=%#TabLineFill#%999Xclose'
+  " endif
+  return s
+endfunction
 
 
 " ATAJOS PERSONALIZADOS
 
-let mapleader=" "                      " La tecla que inicia los atajos es el espacio
+let mapleader=" "                          " La tecla que inicia los atajos es el espacio
 
-map <Leader>w :w<CR>                     " Guarda el archivo
-map <Leader>q :q<CR>                     " Cierra el archivo
+map <Leader>w :w<CR>                       " Guarda el archivo
+map <Leader>q :q<CR>                       " Cierra el archivo
 
-nmap <leader>1 :1tabnext<CR>             " Para moverse entre tabs cuando hay varios abiertos
+nmap <leader>1 :1tabnext<CR>               " Para moverse entre tabs cuando hay varios abiertos
 nmap <leader>2 :2tabnext<CR>
 nmap <leader>3 :3tabnext<CR>
 nmap <leader>4 :4tabnext<CR>
@@ -74,8 +148,13 @@ nmap <leader>6 :6tabnext<CR>
 nmap <leader>7 :7tabnext<CR>
 nmap <leader>8 :8tabnext<CR>
 nmap <leader>9 :9tabnext<CR>
-                                         " Los atajos para cada plugin estan en la configuracion correspondiente del plugin
+				           " Atajos para abrir la terminal
+nmap <Leader>t :!bash<CR>
+nmap <Leader>vt :vertical terminal<CR>
 
+tnoremap <Esc><Esc> <C-\><C-n>             " Si se abre una terminal en un split, para salir con Esc x2
+tnoremap <Esc><Esc><Esc> <C-\><C-n>:q!<CR> " Para cerrar la terminal con Esc x3
+					   " Los atajos para cada plugin estan en la configuracion correspondiente del plugin
 
 " PLUGINS
 
@@ -90,26 +169,25 @@ nmap <leader>9 :9tabnext<CR>
 call plug#begin()
 
 " Plugins para temas
-Plug 'morhetz/gruvbox'                   " Gruvbox
+Plug 'morhetz/gruvbox'                     " Gruvbox
 
 " Plugins para directorios y archivos
-Plug 'preservim/nerdtree'                " Nerdtree. Explorador de archivos por terminal
-Plug 'ryanoasis/vim-devicons'            " Iconos para vim. Necesita una fuente compatible
+Plug 'preservim/nerdtree'                  " Nerdtree. Explorador de archivos por terminal
+Plug 'ryanoasis/vim-devicons'              " Iconos para vim. Necesita una fuente compatible
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'                  " FuzzyFinder. Busqueda de archivos inteligente 
+Plug 'junegunn/fzf.vim'                    " FuzzyFinder. Busqueda de archivos inteligente 
 
 " Plugins para el editor
-Plug 'christoomey/vim-tmux-navigator'    " Permite navegar entre ventanas con la tecla ctrl + h/j/k/l
-Plug 'pacha/vem-tabline'                 " Numera los tabs abiertos y permite pulsar sobre ellos para acceder a ellos
+Plug 'christoomey/vim-tmux-navigator'      " Permite navegar entre ventanas con la tecla ctrl + h/j/k/l
 
 " Plugins para programacion
-Plug 'valloric/youcompleteme'            " Autocompletado
-Plug 'jiangmiao/auto-pairs'              " Autocompletado de llaves (, [, {, ", ', etc.
-Plug 'tpope/vim-surround'                " Para agregar llaves a una seleccion, p.e. rodear una palabra con "
-Plug 'editorconfig/editorconfig-vim'     " Permite utilizar editorconfig
-Plug 'sirver/ultisnips'                  " Permite crear macros para diferentes lenguajes y viene con algunas predefinidas
-Plug 'honza/vim-snippets'                " Necesario para ultisnips. Contiene los snippets predefinidos
-Plug 'scrooloose/nerdcommenter'          " Para realizar comentarios de codigo con atajos"
+Plug 'valloric/youcompleteme'              " Autocompletado
+Plug 'jiangmiao/auto-pairs'                " Autocompletado de llaves (, [, {, ", ', etc.
+Plug 'tpope/vim-surround'                  " Para agregar llaves a una seleccion, p.e. rodear una palabra con "
+Plug 'editorconfig/editorconfig-vim'       " Permite utilizar editorconfig
+Plug 'sirver/ultisnips'                    " Permite crear macros para diferentes lenguajes y viene con algunas predefinidas
+Plug 'honza/vim-snippets'                  " Necesario para ultisnips. Contiene los snippets predefinidos
+Plug 'scrooloose/nerdcommenter'            " Para realizar comentarios de codigo con atajos"
 
 call plug#end()
 
@@ -117,6 +195,6 @@ call plug#end()
 " TEMA DEL EDITOR
 
 "colorscheme gruvbox 
-colorscheme railscasts                   " Obtenido de https://github.com/jpo/vim-railscasts-theme. Instalado manualmente en .vim/colors/
-                                         " Si el tema no carga al iniciar vim, crear un directorio .vim/after y mover .vim/colors alli
-
+"colorscheme railscasts                    " Obtenido de https://github.com/jpo/vim-railscasts-theme. Instalado manualmente en.vim/colors/
+                                           " Si el tema no carga al iniciar vim, crear un directorio .vim/after y mover .vim/colors alli
+colorscheme gmorales                       " Tema personalizado hecho por mi. Esta ubicado en .vim/colors/gabriel.vim
