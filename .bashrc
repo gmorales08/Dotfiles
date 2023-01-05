@@ -49,6 +49,11 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 
+# PATH
+
+export PATH=$PATH:/usr/local/mingw/bin 
+
+
 # COMANDOS QUE SE EJECUTAN AL INICIAR LA TERMINAL
 
 # neofetch
