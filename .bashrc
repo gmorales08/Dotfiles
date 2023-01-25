@@ -34,7 +34,7 @@ GIT_BRANCH="$(__git_ps1 '(%s)')"
 
 PROMPT_GABRIEL="${GREEN}[${HORA_MINUTOS}]${YELLOW}${USUARIO}~>${CYAN}${DIRECTORIO}${NIVEL_ACCESO}${GREEN}"
 
-PROMPT_DIRTRIM=4 # Acorta el directorio en el prompt si pasa los 4 niveles de profundidad
+PROMPT_DIRTRIM=2 # Acorta el directorio en el prompt si pasa x niveles de profundidad
 
 
 export PS1="${PROMPT_GABRIEL}"
