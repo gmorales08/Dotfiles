@@ -137,7 +137,9 @@ endfunction
 let mapleader=" "                          " La tecla que inicia los atajos es el espacio
 
 map <Leader>w :w<CR>                       " Guarda el archivo
+map <C-s> :w<CR> 
 map <Leader>q :q<CR>                       " Cierra el archivo
+imap <C-s> <Esc>:w<CR>                     " Guarda el archivo en modo Insert
 
 nmap <leader>1 :1tabnext<CR>               " Para moverse entre tabs cuando hay varios abiertos
 nmap <leader>2 :2tabnext<CR>
@@ -153,6 +155,7 @@ nmap <Leader>t :!bash<CR>
 nmap <Leader>vt :vertical terminal<CR>
 
 tnoremap <Esc><Esc> <C-\><C-n>             " Si se abre una terminal en un split, para salir con Esc x2
+tnoremap <C-h> <C-\><C-n>                  " Con Control h tambien se sale
 tnoremap <Esc><Esc><Esc> <C-\><C-n>:q!<CR> " Para cerrar la terminal con Esc x3
 					   " Los atajos para cada plugin estan en la configuracion correspondiente del plugin
 
