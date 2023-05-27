@@ -141,6 +141,11 @@ map <C-s> :w<CR>
 map <Leader>q :q<CR>                       " Cierra el archivo
 imap <C-s> <Esc>:w<CR>                     " Guarda el archivo en modo Insert
 
+map  <C-h> b                               " Para moverse mas rapido con Ctrl + hjkl
+map <C-j> 10j
+map <C-k> 10k
+map <C-l> w
+
 nmap <leader>1 :1tabnext<CR>               " Para moverse entre tabs cuando hay varios abiertos
 nmap <leader>2 :2tabnext<CR>
 nmap <leader>3 :3tabnext<CR>

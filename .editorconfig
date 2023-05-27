@@ -8,7 +8,7 @@ end_of_line              = lf    # Para Unix
 charset                  = utf-8
 insert_final_newline     = true  # Inserta una linea al final del archivo 
 trim_trailing_whitespace = true  # Elimina espacios al final de cada linea
-#max_line_length          = 80   # Limite de caracteres por linea
+max_line_length          = 80   # Limite de caracteres por linea
 
 [*.sql]
 indent_style             = space
