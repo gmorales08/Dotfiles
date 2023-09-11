@@ -134,6 +134,7 @@ endfunction
 
 " ATAJOS PERSONALIZADOS
 
+" :source map Para ver el origen de los atajos
 let mapleader=" "                          " La tecla que inicia los atajos es el espacio
 
 map <Leader>w :w<CR>                       " Guarda el archivo
@@ -141,10 +142,10 @@ map <C-s> :w<CR>
 map <Leader>q :q<CR>                       " Cierra el archivo
 imap <C-s> <Esc>:w<CR>                     " Guarda el archivo en modo Insert
 
-map  <C-h> b                               " Para moverse mas rapido con Ctrl + hjkl
-map <C-j> 10j
-map <C-k> 10k
-map <C-l> w
+map <Leader>h b                            " Para moverse mas rapido con Ctrl + hjkl               
+map <Leader>j 10j
+map <Leader>k 10k
+map <Leader>l w
 
 nmap <leader>1 :1tabnext<CR>               " Para moverse entre tabs cuando hay varios abiertos
 nmap <leader>2 :2tabnext<CR>
