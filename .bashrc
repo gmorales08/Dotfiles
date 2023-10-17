@@ -31,8 +31,9 @@ DIRECTORIO="\w"
 HORA_MINUTOS="\A"
 NIVEL_ACCESO="\$"
 GIT_BRANCH="$(__git_ps1 '(%s)')"
+NUEVALINEA="\n"
 
-PROMPT_GABRIEL="${GREEN}[${HORA_MINUTOS}]${YELLOW}${USUARIO}~>${CYAN}${DIRECTORIO}${NIVEL_ACCESO}${GREEN}"
+PROMPT_GABRIEL="${GREEN}[${HORA_MINUTOS}]${YELLOW}${USUARIO}~>${CYAN}${DIRECTORIO}${NIVEL_ACCESO}${NUEVALINEA}${YELLOW}${NIVEL_ACCESO}${GREEN}"
 
 PROMPT_DIRTRIM=2 # Acorta el directorio en el prompt si pasa x niveles de profundidad
 
@@ -48,11 +49,8 @@ if [ -x /usr/bin/dircolors ]; then
     alias ls='ls --color=auto'
 fi
 
-
-# PATH
-
-export PATH=$PATH:/usr/local/mingw/bin 
-
+# Para que fzf busque ficheros ocultos
+export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
 
 # COMANDOS QUE SE EJECUTAN AL INICIAR LA TERMINAL
 

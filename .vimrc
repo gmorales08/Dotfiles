@@ -20,7 +20,7 @@ if has("syntax")                 " Habilita resaltado de sintaxis en caso de est
   syntax on
 endif
 
-filetype indent on               " Permite identar segun la extension del archivo 
+filetype indent on               " Permite identar segun la extension del archivo
 filetype plugin on               " Carga el archivo ftplugin.vim que contiene configuracion para cada extension de fichero
                                  " Este archivo hay que crearlo, y puede ser un directorio donde se guarden ficheros del tipo lenguaje.vim para cada lenguaje
 
@@ -42,6 +42,9 @@ set wildmode=longest:full,full   " Formato de la lista de wildmenu
 set hlsearch                     " Para que cuando se busque algo con / se marquen todas las ocurrencias
 
 set t_Co=256                     " Permite que la terminal muestra 256 colores"
+
+set list                         " Muestra tabuladores, fin de linea y espacios al final de la linea
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 
 
 " STATUS BAR                     " Generada desde https://www.tdaly.co.uk/projects/vim-statusline-generator/
@@ -142,7 +145,7 @@ map <C-s> :w<CR>
 map <Leader>q :q<CR>                       " Cierra el archivo
 imap <C-s> <Esc>:w<CR>                     " Guarda el archivo en modo Insert
 
-map <Leader>h b                            " Para moverse mas rapido con Ctrl + hjkl               
+map <Leader>h b                            " Para moverse mas rapido con Ctrl + hjkl
 map <Leader>j 10j
 map <Leader>k 10k
 map <Leader>l w
@@ -156,9 +159,12 @@ nmap <leader>6 :6tabnext<CR>
 nmap <leader>7 :7tabnext<CR>
 nmap <leader>8 :8tabnext<CR>
 nmap <leader>9 :9tabnext<CR>
+
+nmap <leader>80 :set colorcolumn=80<CR>
 				           " Atajos para abrir la terminal
 nmap <Leader>t :!bash<CR>
 nmap <Leader>vt :vertical terminal<CR>
+nmap <Leader>bt :below terminal<CR>
 
 tnoremap <Esc><Esc> <C-\><C-n>             " Si se abre una terminal en un split, para salir con Esc x2
 tnoremap <C-h> <C-\><C-n>                  " Con Control h tambien se sale

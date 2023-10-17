@@ -4,4 +4,6 @@
 [init]
 	defaultBranch = main
 [credential]
-	helper = cache # Cachea los token de github
+	helper = cache   # Cachea los token de github
+[core]
+	filemode = false # Para que los cambios de permiso no cuenten como cambio
