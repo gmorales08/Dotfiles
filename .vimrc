@@ -7,7 +7,7 @@
 
 " OPCIONES GENERALES DEL EDITOR
 
-set nocompatible                 " Quita la compatibilidad con vi. No es necesario en versiones modernas de vim 
+set nocompatible                 " Quita la compatibilidad con vi. No es necesario en versiones modernas de vim
 set mouse=a                      " Para poder usar el raton en el editor
 
 set noswapfile                   " No usa swapfiles
@@ -33,7 +33,7 @@ set backspace=indent,eol,start   " Para que al pulsar retroceso vuelva a la line
 
 set splitright                   " Para que cuando se habra una ventana con vsplit se habra en la derecha
 set fillchars+=vert:\┊           " Cambia el caracter que separa las ventanas
-                                 " Otros caracteres: ┆ ┊ ∶ ⋮  
+                                 " Otros caracteres: ┆ ┊ ∶ ⋮
 "set laststatus=1                " Muestra siempre la satusbar. Activar en caso de no usar status bar personalizada
 set showcmd                      " Muestra las teclas especiales pulsdas en la esquina inf. dcha.
 
@@ -49,17 +49,17 @@ set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 
 " STATUS BAR                     " Generada desde https://www.tdaly.co.uk/projects/vim-statusline-generator/
 
-set laststatus=2                 " Necesario para mostrar la status bar personalizada 
+set laststatus=2                 " Necesario para mostrar la status bar personalizada
 set statusline+=%1*              " Aplica la configuracion de color indicada abajo
 set statusline+=%F
 set statusline+=%m
 set statusline+=%=
 set statusline+=%y
-set statusline+=\ 
+set statusline+=\
 set statusline+=%l
 set statusline+=:
 set statusline+=%c
-set statusline+=\ 
+set statusline+=\
 set statusline+=%P
 
 
@@ -141,14 +141,15 @@ endfunction
 let mapleader=" "                          " La tecla que inicia los atajos es el espacio
 
 map <Leader>w :w<CR>                       " Guarda el archivo
-map <C-s> :w<CR> 
+map <C-s> :w<CR>
 map <Leader>q :q<CR>                       " Cierra el archivo
 imap <C-s> <Esc>:w<CR>                     " Guarda el archivo en modo Insert
 
 map <Leader>h b                            " Para moverse mas rapido con Ctrl + hjkl
-map <Leader>j 10j
-map <Leader>k 10k
+map <Leader>j ]m
+map <Leader>k [m
 map <Leader>l w
+
 
 nmap <leader>1 :1tabnext<CR>               " Para moverse entre tabs cuando hay varios abiertos
 nmap <leader>2 :2tabnext<CR>
@@ -190,7 +191,7 @@ Plug 'morhetz/gruvbox'                     " Gruvbox
 Plug 'preservim/nerdtree'                  " Nerdtree. Explorador de archivos por terminal
 Plug 'ryanoasis/vim-devicons'              " Iconos para vim. Necesita una fuente compatible
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'                    " FuzzyFinder. Busqueda de archivos inteligente 
+Plug 'junegunn/fzf.vim'                    " FuzzyFinder. Busqueda de archivos inteligente
 
 " Plugins para el editor
 Plug 'christoomey/vim-tmux-navigator'      " Permite navegar entre ventanas con la tecla ctrl + h/j/k/l
@@ -209,7 +210,13 @@ call plug#end()
 
 " TEMA DEL EDITOR
 
-"colorscheme gruvbox 
+"colorscheme gruvbox
 "colorscheme railscasts                    " Obtenido de https://github.com/jpo/vim-railscasts-theme. Instalado manualmente en.vim/colors/
                                            " Si el tema no carga al iniciar vim, crear un directorio .vim/after y mover .vim/colors alli
 colorscheme gmorales                       " Tema personalizado hecho por mi. Esta ubicado en .vim/colors/gabriel.vim
+
+
+" FILETYPE
+"
+" Para que los .h los lea con la sintaxis de C. Comentar para C++.
+au BufRead,BufNewFile *.h set filetype=c

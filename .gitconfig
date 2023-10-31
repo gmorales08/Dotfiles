@@ -1,9 +1,14 @@
 [user]
-	name = Gabriel
+	name = gmorales08
 	email = 888.gmd@gmail.com
 [init]
 	defaultBranch = main
 [credential]
 	helper = cache   # Cachea los token de github
 [core]
-	filemode = false # Para que los cambios de permiso no cuenten como cambio
+	filemode = false # Para que los cambios de permiso se lean
+	editor = vim
+[alias]
+	log-nice = "log --pretty=format:\"%C(auto)%h - %an - %ar \
+		    %n%s%C(reset)\" --shortstat"
+	log-branch = "log --oneline --decorate --all --graph"
