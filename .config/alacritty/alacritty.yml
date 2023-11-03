@@ -1,0 +1,99 @@
+env:
+  TERM: alacritty
+
+window:
+  dimensions:
+    columns: 80
+    lines: 24
+  padding:
+    x: 1
+    y: 1
+  dinamic_padding: false
+  decorations: full
+  opacity: 1.0
+  startup_mode: Windowed
+  title: Terminal
+  dynamic_title: true
+  class:
+    instance: Alacritty
+    general: Alacritty
+  decorations_theme_variant: None
+  resize_increments: false
+
+scrolling:
+  history: 10000
+  multiplier: 3
+
+font:
+  normal:
+    family: monospace
+    style: Regular
+  bold:
+    family:  monospace
+    style: Bold
+  italic:
+    family: monospace
+    style: Italic
+  bold_italic:
+    family: monospace
+    style: Bold Italic
+  size: 15.0
+  offset:
+    x: 0
+    y: 0
+  builtin_box_drawing: false
+  draw_bold_text_with_bright_colors: false
+
+schemes:
+  gabriel: &gabriel
+    primary:
+      background:        '#000000'
+      foreground:        '#00FF00'
+      bright_foreground: '#00FF00'
+      dim_foreground:    '#00FF00'
+    cursor:
+      text:   '#000000'
+      cursor: '#00FF00'
+    bright:
+      black:   '#000000'
+      red:     '#FF0000'
+      green:   '#00FF00'
+      yellow:  '#FFFF00'
+      blue:    '#0000FF'
+      magenta: '#FF00FF'
+      cyan:    '#00FFFF'
+      white:   '#FFFFFF'
+    normal:
+      black:   '#000000'
+      red:     '#FF0000'
+      green:   '#00FF00'
+      yellow:  '#FFFF00'
+      blue:    '#0000FF'
+      magenta: '#FF00FF'
+      cyan:    '#00FFFF'
+      white:   '#FFFFFF'
+    dim:
+      black:   '#000000'
+      red:     '#FF0000'
+      green:   '#00FF00'
+      yellow:  '#FFFF00'
+      blue:    '#0000FF'
+      magenta: '#FF00FF'
+      cyan:    '#00FFFF'
+      white:   '#FFFFFF'
+
+colors: *gabriel
+
+cursor:
+  style:
+    shape: Block
+    blinking: On
+  blink_interval: 750
+  blink_timeout: 0
+  unfocused_hollow: true
+  thickness: 1
+
+shell:
+  program: /bin/bash
+
+working_directory: ~

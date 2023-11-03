@@ -1,22 +1,6 @@
 # Importar el script para el prompt de git
 source ~/.bash/.git-prompt.sh # Script para mostrar la rama git en el prompt
 
-# COLORES
-
-# Identificados por los codigos ansi: https://en.wikipedia.org/wiki/ANSI_escape_code#Colors
-
-NOCOLOR="\033[0m"
-BLACK="\033[30m"
-RED="\033[91m"
-GREEN="\033[92m"
-YELLOW="\033[93m"
-BLUE="\033[94m"
-MAGENTA="\033[95m"
-CYAN="\033[96m"
-GRAY="\033[90m"
-WHITE="\033[97m"
-
-
 # PROMPT
 
 USUARIO="\u"
