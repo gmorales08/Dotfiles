@@ -189,7 +189,7 @@ Plug 'morhetz/gruvbox'                     " Gruvbox
 
 " Plugins para directorios y archivos
 Plug 'preservim/nerdtree'                  " Nerdtree. Explorador de archivos por terminal
-Plug 'ryanoasis/vim-devicons'              " Iconos para vim. Necesita una fuente compatible
+"Plug 'ryanoasis/vim-devicons'              " Iconos para vim. Necesita una fuente compatible
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'                    " FuzzyFinder. Busqueda de archivos inteligente
 
