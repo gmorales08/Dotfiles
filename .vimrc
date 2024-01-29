@@ -219,4 +219,4 @@ colorscheme gmorales                       " Tema personalizado hecho por mi. Es
 " FILETYPE
 "
 " Para que los .h los lea con la sintaxis de C. Comentar para C++.
-au BufRead,BufNewFile *.h set filetype=c
+"au BufRead,BufNewFile *.h set filetype=c
