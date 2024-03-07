@@ -56,11 +56,17 @@ set fillchars+=vert:\┊
 " Muestra las teclas especiales pulsadas en la esquina inf. dcha.
 set showcmd
 
+" Autocompletado. Comentar si se usa plugin de autocompletado
+"set omnifunc=syntaxcomplete#Complete
+"set completeopt=longest,menuone
+
 " Cuando se escriben comandos en vim con :, se muestra un menu horizontal con
 " las opciones disponibles
 set wildmenu
 " Formato de la lista de wildmenu
 set wildmode=longest:full,full
+" Para que las opciones se muestren en vertical
+set wildoptions=pum
 " Para que al buscar con / se marquen todas las ocurrencias
 set hlsearch
 
@@ -72,21 +78,26 @@ set list
 set listchars=eol:$,trail:~
 " tab:>-,extends:>,precedes:<
 
+" Ubicacion de los tags. Generar previamente con ctags
+set tags=./tags,~/.vim/system.tags
 
-" TEMA DEL EDITOR
+"TEMA DEL EDITOR
 " Si el tema no carga al iniciar vim, crear un directorio .vim/after y mover .vim/colors alli
 "colorscheme gruvbox
-" Tema personalizado. Esta ubicado en .vim/colors/gmorales.vim
+" Tema claro de vim
+"colorscheme lunaperche
+"Tema personalizado. Esta ubicado en .vim/colors/gmorales.vim
 colorscheme gmorales
 
 
 " FILETYPE
-" Para que los .h los lea con la sintaxis de C. Comentar para C++.
-"au BufRead,BufNewFile *.h set filetype=c
+" Para que los .h los lea con la sintaxis de C.
+au BufRead,BufNewFile *.h set filetype=c
 
 
 " OTRAS CONFIGURACIONES
 source ~/.vim/statusBar.vim
 source ~/.vim/tabBar.vim
 source ~/.vim/mappings.vim
+source ~/.vim/macros.vim
 source ~/.vim/plugins.vim

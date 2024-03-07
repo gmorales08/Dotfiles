@@ -1,14 +1,14 @@
 [user]
-	name = gmorales08
-	email = 888.gmd@gmail.com
+    name = gmorales08
+    email = 888.gmd@gmail.com
 [init]
-	defaultBranch = main
+    defaultBranch = main
 [credential]
-	helper = cache   # Cachea los token de github
+    helper = cache   # Cachea los token de github
 [core]
-	filemode = false # Para que los cambios de permiso se lean
-	editor = vim
+    filemode = false # Para que los cambios de permiso se lean
+    editor = vim
 [alias]
-	log-nice = "log --pretty=format:\"%C(auto)%h - %an - %ar \
-		    %n%s%C(reset)\" --shortstat"
-	log-branch = "log --oneline --decorate --all --graph"
+    log-nice = "log --pretty=format:\"%C(auto)%h - %an - %ar \
+            %n%s%C(reset)\" --shortstat"
+    log-branch = "log --oneline --decorate --all --graph"

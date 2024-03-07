@@ -1,8 +1,4 @@
-" Configuracion para archivos .c
-
-set showmatch                          " Resalta las parejas de parentesis
-set completeopt-=preview               " Para quitar la ventana de autocompletado
-
-set colorcolumn=80                     " Resalta la columna 80
-
-
+" Resalta las parejas de parentesis
+set showmatch
+" Resalta la columna 80
+set colorcolumn=80

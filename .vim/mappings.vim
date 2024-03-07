@@ -30,6 +30,14 @@ nmap <Leader>9 :9tabnext<CR>
 " Resaltar la columna 80
 nmap <Leader>80 :set colorcolumn=80<CR>
 
+" Ir o volver de la definicion (requiere tags)
+nmap <Leader>def <C-]>
+nmap <Leader>fed <C-T>
+
+" Cambiar de colorscheme
+nmap <Leader>csd :set background=dark<CR>:colorscheme gmorales<CR>
+nmap <Leader>csl :set background=light<CR>:colorscheme lunaperche<CR>
+
 " Abrir la terminal
 nmap <Leader>t :!bash<CR>
 nmap <Leader>vt :vertical terminal<CR>
@@ -44,5 +52,12 @@ tnoremap <Esc><Esc><Esc> <C-\><C-n>:q!<CR>
 nmap <Leader>vs :!code %<CR><CR>
 nmap <Leader>ge :!gedit % &<CR><CR>
 
-" Los atajos especificos para cada plugin estan en la configuracion
-" correspondiente del plugin
+
+" Atajos especificos para un tipo de archivo
+
+" Abrir o crear un .h/.hpp asociado al .c/.cpp que estoy editando
+autocmd FileType c nmap <Leader>vh :exe "vsplit " . expand("%:r") . ".h"<CR>
+au FileType cpp nmap <Leader>vh :exe "vsplit " . expand("%:r") . ".hpp"<CR>
+
+" Cargar la configuracion de un fichero vim
+autocmd FileType vim nmap <Leader>% :source %<CR>

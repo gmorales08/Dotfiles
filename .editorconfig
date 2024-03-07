@@ -2,14 +2,14 @@ root = true
 
 [*]
 indent_size              = 4
+end_of_line              = lf
+charset                  = utf-8
 trim_trailing_whitespace = true
 
 [*.{c,cpp,h,hpp,cu}]
 indent_style             = space
 indent_size              = 4
 tab_width                = 4
-end_of_line              = lf
-charset                  = utf-8
 insert_final_newline     = true
 max_line_length          = 80
 
@@ -17,23 +17,18 @@ max_line_length          = 80
 indent_style             = space
 indent_size              = 2
 tab_width                = 2
-end_of_line              = lf
-charset                  = utf-8
 insert_final_newline     = true
 
 [*.sh]
 indent_style             = space
 indent_size              = 2
 tab_width                = 2
-end_of_line              = lf
 insert_final_newline     = true
 
 [*.{s,asm}]
 indent_style             = space
 indent_size              = 4
 tab_width                = 4
-end_of_line              = lf
-charset                  = utf-8
 insert_final_newline     = true
 max_line_length          = 80
 
@@ -47,4 +42,3 @@ indent_style             = tab
 indent_style             = space
 indent_size              = 4
 tab_width                = 4
-end_of_line              = lf

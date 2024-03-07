@@ -1,6 +1,6 @@
 #!/bin/bash
 
-target_dir=prueba
+target_dir=$HOME
 dotfiles_dir=$(pwd)
 
 DOTFILES=(
