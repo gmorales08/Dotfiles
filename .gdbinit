@@ -1,6 +1,6 @@
 set confirm off
 set print pretty on
-set disassembly-flavor intel
+set disassembly-flavor att
 tui enable
 tui layout src
 
@@ -11,4 +11,8 @@ end
 
 define stack
     x/64xb $rsp
+end
+
+define stack32
+    x/64xb $esp
 end

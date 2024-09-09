@@ -70,6 +70,23 @@ set wildoptions=pum
 " Para que al buscar con / se marquen todas las ocurrencias
 set hlsearch
 
+" Para que al hacer fold detecte estructuras de sintaxis como funciones
+" Por defecto deshabilito el folding para todos los archivos
+" Lo habilito individualmente para cada filetype en .vim/ftplugin
+set nofoldenable
+" Folding por identacion
+set foldmethod=indent
+" Todos los fold empiezan plegados
+set foldlevel=0
+" Al editar otro buffer se empieza con todos los fold plegados
+set foldlevelstart=0
+" Minimo de lineas para poder ser plegado
+set foldminlines=1
+" Cantidad maxima de folds anidados
+set foldnestmax=1
+" Formato del fold: fold son los caracteres a la derecha y foldclose
+set fillchars+=fold:\ ,foldclose:-
+
 " Permite que la terminal muestre 256 colores
 set t_Co=256
 
@@ -79,7 +96,7 @@ set listchars=eol:$,trail:~
 " tab:>-,extends:>,precedes:<
 
 " Ubicacion de los tags. Generar previamente con ctags
-set tags=./tags,~/.vim/system.tags
+set tags=~/.vim/system.tags
 
 "TEMA DEL EDITOR
 " Si el tema no carga al iniciar vim, crear un directorio .vim/after y mover .vim/colors alli
@@ -92,7 +109,7 @@ colorscheme gmorales
 
 " FILETYPE
 " Para que los .h los lea con la sintaxis de C.
-au BufRead,BufNewFile *.h set filetype=c
+autocmd BufRead,BufNewFile *.h set filetype=c
 
 
 " OTRAS CONFIGURACIONES

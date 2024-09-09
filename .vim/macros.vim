@@ -15,4 +15,4 @@ function! GenerateHeader()
     execute 'normal! 3j'
 endfunction
 
-let @h = ":call GenerateHeader()\r"
+let @h = ":call GenerateHeader()\ni"

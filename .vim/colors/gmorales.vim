@@ -4,7 +4,7 @@
 " A simply dark theme for vim terminal and gvim.
 " It is designed for use in dark and bright enviroments, and for read it
 " clearly and not tire your eyes
-" 
+"
 " The codes for the colors are in https://www.ditig.com/256-colors-cheat-sheet
 
 set background=dark
@@ -28,6 +28,7 @@ highlight SignColumn   ctermfg=244 ctermbg=234                   guifg=#808080 g
 highlight User1        ctermfg=252 ctermbg=234                   guifg=#d0d0d0 guibg=#1c1c1c
 
 highlight MatchParen               ctermbg=246                                 guibg=#949494
+highlight Search       ctermfg=238 ctermbg=220 cterm=bold        guifg=#444444 guibg=#ffd700 gui=bold
 
 highlight NonText      ctermfg=240                               guifg=#585858
 
@@ -36,9 +37,11 @@ highlight Directory    ctermfg=153                               guifg=#afd7ff
 highlight PMenu        ctermfg=254 ctermbg=238                   guifg=#e4e4e4 guibg=#444444
 highlight PmenuSel     ctermfg=255 ctermbg=244                   guifg=#eeeeee guibg=#808080
 
+highlight SpecialKey   ctermfg=81                                guifg=#5fd7ff
+
 highlight TabLine      ctermfg=252 ctermbg=237                   guifg=#d0d0d0 guibg=#3a3a3a
 highlight TabLineSel   ctermfg=255 ctermbg=234                   guifg=#eeeeee guibg=#1c1c1c
-highlight TabLineFill  ctermfg=234                               guifg=#1c1c1c 
+highlight TabLineFill  ctermfg=234                               guifg=#1c1c1c
 highlight Title        ctermfg=252 ctermbg=237                   guifg=#d0d0d0 guibg=#3a3a3a
 
 highlight Comment      ctermfg=137                               guifg=#af875f
@@ -61,7 +64,10 @@ highlight StorageClass ctermfg=105                               guifg=#8787ff
 highlight Special      ctermfg=28                                guifg=#008700
 
 highlight Error        ctermfg=160 ctermbg=NONE                  guifg=#d70000 guibg=NONE
-highlight SpellBad     ctermfg=160 ctermbg=NONE cterm=underline  guifg=#d70000 guibg=NONE    gui=underline
+highlight SpellBad     ctermfg=196 ctermbg=NONE cterm=underline  guifg=#d70000 guibg=NONE    gui=underline
 
 highlight Todo         ctermfg=221 ctermbg=NONE cterm=bold       guifg=#ffd75f guibg=NONE    gui=bold
+
+highlight Folded       ctermfg=244 ctermbg=234                   guifg=#808080 guibg=#1c1c1c
+highlight FoldColumn   ctermfg=244 ctermbg=234                   guifg=#808080 guibg=#1c1c1c
 
