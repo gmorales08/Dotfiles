@@ -13,7 +13,7 @@ DOTFILES=(
 
 DOTDIRS=(
   .bash
-  .config
+  .config/*
   .vim
 )
 
@@ -55,7 +55,7 @@ if [ "$continuar" == "y" ] || [ "$continuar" == "Y" ]; then
   echo "Instalando directorios"
   for dir in "${DOTDIRS[@]}"; do
     msg="Creando enlace a $dir..."
-    comando="ln -s $dotfiles_dir/$dir $target_dir"
+    comando="ln -s $dotfiles_dir/$dir $target_dir/$dir"
     error=$(eval "$comando" 2>&1)
     if [ $? -eq 0 ]; then
       msg="$msg[OK]"
