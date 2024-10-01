@@ -4,9 +4,11 @@
 [init]
     defaultBranch = main
 [credential]
-    helper = cache   # Cachea los token de github
+	# Cachea los token de github
+    helper = cache
 [core]
-    filemode = false # Para que los cambios de permiso se lean
+	# Ignora los cambios de permisos
+	fileMode = false
     editor = vim
 [alias]
     log-nice = "log --pretty=format:\"%C(auto)%h - %an - %ar \

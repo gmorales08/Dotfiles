@@ -5,31 +5,28 @@ indent_size              = 4
 end_of_line              = lf
 charset                  = utf-8
 trim_trailing_whitespace = true
+insert_final_newline     = true
 
 [*.{c,cpp,h,hpp,cu}]
 indent_style             = space
 indent_size              = 4
 tab_width                = 4
-insert_final_newline     = true
 max_line_length          = 80
 
 [*.{sql,db}]
 indent_style             = space
 indent_size              = 2
 tab_width                = 2
-insert_final_newline     = true
 
 [*.sh]
 indent_style             = space
 indent_size              = 2
 tab_width                = 2
-insert_final_newline     = true
 
 [*.{s,asm}]
 indent_style             = space
 indent_size              = 4
 tab_width                = 4
-insert_final_newline     = true
 max_line_length          = 80
 
 [*.md]
@@ -38,7 +35,26 @@ trim_trailing_whitespace = false
 [Makefile]
 indent_style             = tab
 
+[CMakeLists.txt]
+indent_style             = space
+indent_size              = 4
+tab_width                = 4
+max_line_length          = 80
+
 [*.txt]
 indent_style             = space
 indent_size              = 4
 tab_width                = 4
+
+[*.vim]
+trim_trailing_whitespace = false
+
+[.vimrc]
+trim_trailing_whitespace = false
+
+[.tmux.conf]
+indent_style             = tab
+indent_size              = 4
+tab_width                = 4
+max_line_length          = 80
+

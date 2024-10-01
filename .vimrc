@@ -91,20 +91,29 @@ set fillchars+=fold:\ ,foldclose:-
 set t_Co=256
 
 " Muestra caracteres especiales como caracteres
+" Tab lo sigue mostrando como espacios
 set list
-set listchars=eol:$,trail:~
+set listchars=tab:\ \ ,eol:$,trail:~
 " tab:>-,extends:>,precedes:<
 
 " Ubicacion de los tags. Generar previamente con ctags
 set tags=~/.vim/system.tags
 
+" Cuando se edita un fichero en una ventana de vim, se actualiza en todas
+" en las que tambien estaba abierto
+set autoread
+" Para que vim detecte cuando un fichero es modificado por otro editor
+autocmd FocusGained,BufEnter * checktime
+
+
 "TEMA DEL EDITOR
-" Si el tema no carga al iniciar vim, crear un directorio .vim/after y mover .vim/colors alli
+" Si el tema no carga al iniciar vim, crear un directorio .vim/after y mover 
+" .vim/colors alli
 "colorscheme gruvbox
 " Tema claro de vim
-"colorscheme lunaperche
+colorscheme lunaperche
 "Tema personalizado. Esta ubicado en .vim/colors/gmorales.vim
-colorscheme gmorales
+"colorscheme gmorales
 
 
 " FILETYPE

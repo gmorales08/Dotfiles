@@ -8,6 +8,7 @@ DOTFILES=(
   .editorconfig
   .gdbinit
   .gitconfig
+  .tmux.conf
   .vimrc
 )
 

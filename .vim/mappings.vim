@@ -52,12 +52,31 @@ tnoremap <Esc><Esc><Esc> <C-\><C-n>:q!<CR>
 nmap <Leader>vs :!code %<CR><CR>
 nmap <Leader>ge :!gedit % &<CR><CR>
 
+" Abrir o cerrar todos los folds
+nmap <Leader>of zR
+nmap <Leader>cf zM
+
 
 " Atajos especificos para un tipo de archivo
 
-" Abrir o crear un .h/.hpp asociado al .c/.cpp que estoy editando
-autocmd FileType c nmap <Leader>vh :exe "vsplit " . expand("%:r") . ".h"<CR>
-au FileType cpp nmap <Leader>vh :exe "vsplit " . expand("%:r") . ".hpp"<CR>
+" Abrir o crear un .h/.hpp asociado al .c/.cpp que estoy editando y viceversa
+autocmd FileType c nmap <Leader>vh :exe (expand("%:e") == "c" ?
+    \ "rightabove vsplit " . expand("%:r") . ".h" :
+    \ "leftbelow vsplit " . expand("%:r") . ".c")<CR>
+
+autocmd FileType cpp nmap <Leader>vh :exe (expand("%:e") == "cpp" ?
+    \ "rigthbelow vsplit " . expand("%:r") . ".hpp" :
+    \ "leftbelow vsplit " . expand("%:r") . ".cpp")<CR>
+
 
 " Cargar la configuracion de un fichero vim
 autocmd FileType vim nmap <Leader>% :source %<CR>
+
+
+" DESACTIVACION DE ATAJOS PREDETERMINADOS
+
+" Desactivar los atajos de las teclas H J K L
+nnoremap H h
+nnoremap J j
+nnoremap K k
+nnoremap L l
