@@ -50,7 +50,7 @@ tnoremap <Esc><Esc><Esc> <C-\><C-n>:q!<CR>
 
 " Abrir el archivo en otro editor
 nmap <Leader>vs :!code %<CR><CR>
-nmap <Leader>ge :!gedit % &<CR><CR>
+nmap <Leader>ge :!mousepad % &<CR><CR>
 
 " Abrir o cerrar todos los folds
 nmap <Leader>of zR
@@ -61,12 +61,17 @@ nmap <Leader>cf zM
 
 " Abrir o crear un .h/.hpp asociado al .c/.cpp que estoy editando y viceversa
 autocmd FileType c nmap <Leader>vh :exe (expand("%:e") == "c" ?
-    \ "rightabove vsplit " . expand("%:r") . ".h" :
-    \ "leftbelow vsplit " . expand("%:r") . ".c")<CR>
+    \ "rightbelow vsplit " . expand("%:r") . ".h" :
+    \ "leftabove vsplit " . expand("%:r") . ".c")<CR>
 
 autocmd FileType cpp nmap <Leader>vh :exe (expand("%:e") == "cpp" ?
-    \ "rigthbelow vsplit " . expand("%:r") . ".hpp" :
-    \ "leftbelow vsplit " . expand("%:r") . ".cpp")<CR>
+    \ ":rightbelow vsplit " . expand("%:r") . ".hpp" :
+    \ ":leftabove vsplit " . expand("%:r") . ".cpp")<CR>
+
+" Visualizar y editar un binario con xxd
+nmap <Leader>hex :set binary<CR>:%!xxd<CR>:set filetype=xxd<CR>
+" Revertir la visualizacion del binario
+nmap <Leader>xeh :%!xxd -r<CR>:set binary<CR>:set filetype=<CR>
 
 
 " Cargar la configuracion de un fichero vim

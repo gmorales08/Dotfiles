@@ -1,3 +1,4 @@
+" Para generar header de C y CPP
 function! GenerateHeader()
     let l:filename = expand('%:t:r')
     let l:extension = toupper(expand('%:e'))

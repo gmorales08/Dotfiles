@@ -54,4 +54,7 @@ Plug 'scrooloose/nerdcommenter'
 " Endwise. Autocierre de estructuras del preprocesador
 Plug 'tpope/vim-endwise'
 
+" Previm. Para preview de documentos markdown
+Plug 'kannokanno/previm'
+
 call plug#end()

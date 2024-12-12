@@ -6,8 +6,8 @@ let g:ale_linters = {
     \ }
 
 let g:ale_fixers = {
-    \ 'c': ['clang'],
-    \ 'cpp': ['clang'],
+    \ 'c': ['clang-format'],
+    \ 'cpp': ['clang-format'],
     \ }
 let g:ale_asm_llvm_mc_executable = 'llvm-mc-14'
 let g:ale_c_cc_options = '-std=c89 -Wall -pedantic'
@@ -19,5 +19,7 @@ let g:ale_lint_on_filetype_changed = 0
 let g:ale_lint_on_insert_leave = 0
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
+
+let g:ale_fix_on_save = 1
 
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
