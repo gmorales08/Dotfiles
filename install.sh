@@ -4,17 +4,21 @@ target_dir=$HOME
 dotfiles_dir=$(pwd)
 
 DOTFILES=(
+  .bash_profile
   .bashrc
   .editorconfig
   .gdbinit
   .gitconfig
-  .tmux.conf
   .vimrc
 )
 
 DOTDIRS=(
   .bash
-  .config/*
+  .config/alacritty
+  .config/audacious
+  .config/htop
+  .config/pipewire
+  .config/tmux
   .vim
 )
 

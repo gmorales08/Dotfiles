@@ -1,5 +1,5 @@
 # Importar el script para el prompt de git
-source ~/.bash/.git-prompt.sh # Script para mostrar la rama git en el prompt
+source ~/.bash/.git-prompt.sh
 
 # PROMPT
 

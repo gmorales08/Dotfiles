@@ -1,0 +1,150 @@
+[colors.bright]
+black = "#000000"
+blue = "#0000FF"
+cyan = "#00FFFF"
+green = "#00FF00"
+magenta = "#FF00FF"
+red = "#FF0000"
+white = "#FFFFFF"
+yellow = "#FFFF00"
+
+[colors.cursor]
+cursor = "#00FF00"
+text = "#000000"
+
+[colors.dim]
+black = "#000000"
+blue = "#0000FF"
+cyan = "#00FFFF"
+green = "#00FF00"
+magenta = "#FF00FF"
+red = "#FF0000"
+white = "#FFFFFF"
+yellow = "#FFFF00"
+
+[colors.normal]
+black = "#000000"
+blue = "#0000FF"
+cyan = "#00FFFF"
+green = "#00FF00"
+magenta = "#FF00FF"
+red = "#FF0000"
+white = "#FFFFFF"
+yellow = "#FFFF00"
+
+[colors.primary]
+background = "#000000"
+bright_foreground = "#00FF00"
+dim_foreground = "#00FF00"
+foreground = "#00FF00"
+
+[colors]
+draw_bold_text_with_bright_colors = false
+
+[cursor]
+blink_interval = 750
+blink_timeout = 0
+thickness = 1
+unfocused_hollow = true
+
+[cursor.style]
+blinking = "On"
+shape = "Block"
+
+[env]
+TERM = "alacritty"
+
+[font]
+builtin_box_drawing = false
+size = 14.0
+
+[font.bold]
+family = "monospace"
+style = "Bold"
+
+[font.bold_italic]
+family = "monospace"
+style = "Bold Italic"
+
+[font.italic]
+family = "monospace"
+style = "Italic"
+
+[font.normal]
+family = "monospace"
+style = "Regular"
+
+[font.offset]
+x = 0
+y = 0
+
+#[schemes.gabriel.bright]
+#black = "#000000"
+#blue = "#0000FF"
+#cyan = "#00FFFF"
+#green = "#00FF00"
+#magenta = "#FF00FF"
+#red = "#FF0000"
+#white = "#FFFFFF"
+#yellow = "#FFFF00"
+
+#[schemes.gabriel.cursor]
+#cursor = "#00FF00"
+#text = "#000000"
+
+#[schemes.gabriel.dim]
+#black = "#000000"
+#blue = "#0000FF"
+#cyan = "#00FFFF"
+#green = "#00FF00"
+#magenta = "#FF00FF"
+#red = "#FF0000"
+#white = "#FFFFFF"
+#yellow = "#FFFF00"
+
+#[schemes.gabriel.normal]
+#black = "#000000"
+#blue = "#0000FF"
+#cyan = "#00FFFF"
+#green = "#00FF00"
+#magenta = "#FF00FF"
+#red = "#FF0000"
+#white = "#FFFFFF"
+#yellow = "#FFFF00"
+
+#[schemes.gabriel.primary]
+#background = "#000000"
+#bright_foreground = "#00FF00"
+#dim_foreground = "#00FF00"
+#foreground = "#00FF00"
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[terminal.shell]
+program = "/bin/bash"
+
+[window]
+decorations = "full"
+decorations_theme_variant = "None"
+dynamic_padding = false
+dynamic_title = true
+opacity = 1.0
+resize_increments = false
+startup_mode = "Windowed"
+title = "Terminal"
+
+[window.class]
+general = "Alacritty"
+instance = "Alacritty"
+
+[window.dimensions]
+columns = 80
+lines = 24
+
+[window.padding]
+x = 1
+y = 1
+
+[terminal]

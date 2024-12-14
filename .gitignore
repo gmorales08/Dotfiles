@@ -2,4 +2,4 @@
 .vim/autoload
 .vim/.netrwhist
 .vim/system.tags
-.tmux/
+.config/tmux/plugins/
