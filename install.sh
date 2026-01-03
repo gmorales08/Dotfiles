@@ -9,16 +9,18 @@ DOTFILES=(
   .editorconfig
   .gdbinit
   .gitconfig
+  .ripgreprc
   .vimrc
 )
 
 DOTDIRS=(
   .bash
   .config/alacritty
-  .config/audacious
   .config/htop
   .config/pipewire
+  .config/polybar
   .config/tmux
+  .config/wireplumber
   .vim
 )
 

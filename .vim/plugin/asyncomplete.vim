@@ -4,4 +4,7 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>
 
 " Force refresh completion. De la documentacion
-inoremap <C-@> <plug>(asyncomplete_force_refresh)
+inoremap <C-space> <plug>(asyncomplete_force_refresh)
+
+" Autopopup
+let g:asyncomplete_auto_popup = 1

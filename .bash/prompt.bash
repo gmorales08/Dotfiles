@@ -18,3 +18,4 @@ PROMPT_DIRTRIM=2 # Acorta el directorio en el prompt si pasa x niveles de profun
 
 export PS1="${PROMPT_GABRIEL}"
 
+#echo ".bash/prompt.bash loaded"

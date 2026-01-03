@@ -75,7 +75,9 @@ set hlsearch
 " Lo habilito individualmente para cada filetype en .vim/ftplugin
 set nofoldenable
 " Folding por identacion
-set foldmethod=indent
+"set foldmethod=indent
+" Folding por sintaxis
+set foldmethod=syntax
 " Todos los fold empiezan plegados
 set foldlevel=0
 " Al editar otro buffer se empieza con todos los fold plegados
@@ -119,6 +121,13 @@ colorscheme lunaperche
 " FILETYPE
 " Para que los .h los lea con la sintaxis de C.
 autocmd BufRead,BufNewFile *.h set filetype=c
+" Para que .v y .vh lo detecte como Verilog
+autocmd BufRead,BufNewFile *.v set filetype=verilog
+autocmd BufRead,BufNewFile *.vh set filetype=verilog
+
+
+" Colorcolumn por defecto
+set colorcolumn=80
 
 
 " OTRAS CONFIGURACIONES

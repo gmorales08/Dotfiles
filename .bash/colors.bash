@@ -19,3 +19,5 @@ if [ -x /usr/bin/dircolors ]; then
     alias ls='ls --color=auto'
     alias grep='grep --color=auto'
 fi
+
+#echo ".bash/colors.bash loaded"

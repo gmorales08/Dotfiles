@@ -34,21 +34,25 @@ Plug 'dense-analysis/ale'
 Plug 'prabirshrestha/vim-lsp'
 " vim-lsp-settings : autoinstalador de lsp servers
 Plug 'mattn/vim-lsp-settings'
+" Ultisnips. Gestor de macros y snippets para varios lenguajes.
+Plug 'sirver/ultisnips'
+" Vim snippets. Necesario para ultisnips. Contiene snippets predefinidos.
+Plug 'honza/vim-snippets'
 " vim-lsp-ultisnips y snippets : para poder usar snippets con vim-lsp
 Plug 'thomasfaingnaert/vim-lsp-snippets'
 Plug 'thomasfaingnaert/vim-lsp-ultisnips'
+" Async : dependencia de asyncomplete
+Plug 'prabirshrestha/async.vim'
 " Asyncomplete : para autocompletado
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
+" vim-cpp-modern: Resaltado de sintaxis para cpp
+Plug 'bfrg/vim-cpp-modern'
 
 " AutoPairs. Para cierre automatico de llaves, parentesis, etc.
 Plug 'jiangmiao/auto-pairs'
 " Editorconfig. Para que reconozca .editorconfig
 Plug 'editorconfig/editorconfig-vim'
-" Ultisnips. Macros y snippets para varios lenguajes.
-Plug 'sirver/ultisnips'
-" Vin snippets. Necesario para ultisnips. Contiene snippets predefinidos.
-Plug 'honza/vim-snippets'
 " Nerd commenter. Para comentar codigo con atajos.
 Plug 'scrooloose/nerdcommenter'
 " Endwise. Autocierre de estructuras del preprocesador

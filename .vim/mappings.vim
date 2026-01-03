@@ -49,24 +49,37 @@ tnoremap <C-h> <C-\><C-n>
 tnoremap <Esc><Esc><Esc> <C-\><C-n>:q!<CR>
 
 " Abrir el archivo en otro editor
-nmap <Leader>vs :!code %<CR><CR>
-nmap <Leader>ge :!mousepad % &<CR><CR>
+nmap <Leader>vs :!codium %<CR><CR>
+nmap <Leader>ge :!gedit % &<CR><CR>
+
+"Abrir la seleccion actual en modo Visual en otro editor
+xnoremap <Leader>ge :w !gedit -<CR><CR>
 
 " Abrir o cerrar todos los folds
 nmap <Leader>of zR
 nmap <Leader>cf zM
 
+" Escribir el patron de substitucion de texto (para no aprendermelo de memoria)
+nmap <Leader>sub :%s/\<antigua\>/nueva/g"confirmacion:c
+" Para rename usar :LspRename
+nmap <Leader>ren :LspRename
 
 " Atajos especificos para un tipo de archivo
 
-" Abrir o crear un .h/.hpp asociado al .c/.cpp que estoy editando y viceversa
+" Abrir o crear un .h/.hpp/.vh asociado al .c/.cpp/.v que estoy editando y 
+" viceversa
 autocmd FileType c nmap <Leader>vh :exe (expand("%:e") == "c" ?
     \ "rightbelow vsplit " . expand("%:r") . ".h" :
-    \ "leftabove vsplit " . expand("%:r") . ".c")<CR>
+    \ "leftabove vsplit " . expand("%:r") . ".c")<CR><CR>
 
 autocmd FileType cpp nmap <Leader>vh :exe (expand("%:e") == "cpp" ?
-    \ ":rightbelow vsplit " . expand("%:r") . ".hpp" :
-    \ ":leftabove vsplit " . expand("%:r") . ".cpp")<CR>
+    \ "rightbelow vsplit " . expand("%:r") . ".hpp" :
+    \ "leftabove vsplit " . expand("%:r") . ".cpp")<CR><CR>
+
+autocmd FileType verilog nmap <Leader>vh :exe (expand("%:e") == "v" ?
+    \ "rightbelow vsplit " . expand("%:r") . ".vh" :
+    \ "leftabove vsplit " . expand("%:r") . ".v")<CR><CR>
+
 
 " Visualizar y editar un binario con xxd
 nmap <Leader>hex :set binary<CR>:%!xxd<CR>:set filetype=xxd<CR>

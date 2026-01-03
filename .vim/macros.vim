@@ -17,3 +17,19 @@ function! GenerateHeader()
 endfunction
 
 let @h = ":call GenerateHeader()\ni"
+
+" Para incluir header de C y CPP
+function! IncludeHeader()
+    let l:ext = expand('%:e')
+    if l:ext !=# 'cpp' && l:ext !=# 'c'
+        return
+    endif
+    let l:filename = expand('%:t:r')
+    let l:header_ext = (l:ext ==# 'cpp') ? 'hpp' : 'h'
+    let l:include_line = '#include "' . l:filename . '.' . l:header_ext . '"'
+
+    call append(0, l:include_line)
+    call append(1, '')
+endfunction
+
+let @i = ":call IncludeHeader()\n"

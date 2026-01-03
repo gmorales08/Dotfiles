@@ -1,0 +1,14 @@
+# Uso este ripgreprc porque el plugin de fzf para vim no tiene una variable
+# con las opciones de rg y hay que sobrescribir los comandos predefinidos
+# Esta configuracion es para buscar texto dentro de ficheros. Para buscar
+# unicamente ficheros uso fzf
+
+# Lista archivos en lugar de buscar texto dentro de ellos
+#--files
+# Para buscar dotfiles
+--hidden
+# Para seguir enlaces simbolicos
+# --follow
+# Para excluir .git
+--glob=!.git/*
+
