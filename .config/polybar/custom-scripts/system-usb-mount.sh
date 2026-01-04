@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 devices=$(lsblk -Jplno NAME,TYPE,RM,SIZE,MOUNTPOINT,VENDOR)
 
