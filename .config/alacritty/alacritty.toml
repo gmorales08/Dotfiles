@@ -1,12 +1,12 @@
 [colors.bright]
 black = "#000000"
-blue = "#0000FF"
-cyan = "#00FFFF"
-green = "#00FF00"
-magenta = "#FF00FF"
 red = "#FF0000"
-white = "#FFFFFF"
+green = "#00FF00"
 yellow = "#FFFF00"
+blue = "#0000FF"
+magenta = "#FF00FF"
+cyan = "#00FFFF"
+white = "#FFFFFF"
 
 [colors.cursor]
 cursor = "#00FF00"
@@ -14,23 +14,23 @@ text = "#000000"
 
 [colors.dim]
 black = "#000000"
-blue = "#0000FF"
-cyan = "#00FFFF"
-green = "#00FF00"
-magenta = "#FF00FF"
 red = "#FF0000"
-white = "#FFFFFF"
+green = "#00FF00"
 yellow = "#FFFF00"
+blue = "#0000FF"
+magenta = "#FF00FF"
+cyan = "#00FFFF"
+white = "#FFFFFF"
 
 [colors.normal]
 black = "#000000"
-blue = "#0000FF"
-cyan = "#00FFFF"
-green = "#00FF00"
-magenta = "#FF00FF"
 red = "#FF0000"
-white = "#FFFFFF"
+green = "#00FF00"
 yellow = "#FFFF00"
+blue = "#0000FF"
+magenta = "#FF00FF"
+cyan = "#00FFFF"
+white = "#FFFFFF"
 
 [colors.primary]
 background = "#000000"
