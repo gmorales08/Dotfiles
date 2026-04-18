@@ -17,6 +17,7 @@ DOTDIRS=(
   .bash
   .config/alacritty
   .config/htop
+  .config/nvim
   .config/pipewire
   .config/polybar
   .config/tmux

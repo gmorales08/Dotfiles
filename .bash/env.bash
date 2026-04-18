@@ -40,7 +40,7 @@ export XCURSOR_THEME=Papirus
 # Pongo nombres en espanol para evitar conflictos
 # con variables del sistema
 
-export EDITOR_TEXTO="mousepad"
+export EDITOR_TEXTO="xed"
 export GESTOR_ARCHIVOS="nemo"
 
 #echo ".bash/env.bash loaded"

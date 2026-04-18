@@ -1,14 +1,14 @@
 let g:ale_linters = {
     \ 'asm': ['llvm_mc'],
     \ 'c': ['clangtidy', 'cppcheck'],
-    \ 'cpp': ['clangtidy', 'cppcheck'],
+    \ 'cpp': ['clangd'],
     \ 'cuda': ['nvcc'],
     \ 'cmake': ['cmake_lint', 'cmakelint'],
     \ }
 
 let g:ale_fixers = {
     \ 'c': ['clang-format'],
-    \ 'cpp': ['clang-format'],
+    \ 'cpp': ['clangd'],
     \ 'cmake': ['cmakeformat'],
     \ 'json': ['clang-format'],
     \ }

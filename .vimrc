@@ -113,9 +113,9 @@ autocmd FocusGained,BufEnter * checktime
 " .vim/colors alli
 "colorscheme gruvbox
 " Tema claro de vim
-colorscheme lunaperche
+"colorscheme lunaperche
 "Tema personalizado. Esta ubicado en .vim/colors/gmorales.vim
-"colorscheme gmorales
+colorscheme gmorales
 
 
 " FILETYPE

@@ -3,7 +3,8 @@
 " Gestor de plugins -> vim-plug
 " Instalar desde https://github.com/junegunn/vim-plug
 " Los plugins se pueden buscar en https://vimawesome.com/
-
+"
+" Despues de hacer un cambio en este fichero, hacer source
 " :PlugInstall para instalar un plugin
 " :PlugUpdate  para actualizar un plugin
 " :PlugClean   para desinstalar los plugins no utilizados
@@ -28,12 +29,14 @@ Plug 'christoomey/vim-tmux-navigator'
 
 " PLUGINS PARA PROGRAMACION
 " Ale. Linter y formater para muchos lenguajes.
-Plug 'dense-analysis/ale'
+"Plug 'dense-analysis/ale'
 " Language Server Protocol. Para autocompletado, hover, etc.
 " vim-lsp : cliente lsp
 Plug 'prabirshrestha/vim-lsp'
 " vim-lsp-settings : autoinstalador de lsp servers
-Plug 'mattn/vim-lsp-settings'
+"Plug 'mattn/vim-lsp-settings'
+" vim-lsp-ale : importante para tener ale con vim-lsp
+"Plug 'rhysd/vim-lsp-ale'
 " Ultisnips. Gestor de macros y snippets para varios lenguajes.
 Plug 'sirver/ultisnips'
 " Vim snippets. Necesario para ultisnips. Contiene snippets predefinidos.

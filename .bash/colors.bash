@@ -21,13 +21,17 @@ if [ -x /usr/bin/dircolors ]; then
     # Uso dircolors para aplicar colores automaticamente en base a los colores
     # de la terminal. Dejo los que aplica salvo DI (directorios, azul brillante)
     # y BD (block devices, amarillo brillante)
+    # Los .old y .bak los cambio al valor predeterminado porque si no los pinta
+    # negro sobre negro
     # El comando dircolors exporta la variable LS_COLORS autoconfigurada
     eval $(dircolors)
     DI_VAL=$(dircolors | tr ':' '\n' | grep '^di=' | cut -d= -f2)
     BD_VAL=$(dircolors | tr ':' '\n' | grep '^bd=' | cut -d= -f2)
     export LS_COLORS=$(echo "$LS_COLORS" | sed -r \
         -e "s/(^|:)di=[^:]+/\1di=33/" \
-        -e "s/(^|:)bd=[^:]+/\1bd=${DI_VAL}/")
+        -e "s/(^|:)bd=[^:]+/\1bd=${DI_VAL}/" \
+        -e "s/(^|:)\*\.bak=[^:]+/\1*.bak=00/" \
+        -e "s/(^|:)\*\.old=[^:]+/\1*.old=00/")
 
     # ls --color=auto usa LS_COLORS si esta definida
     alias ls='ls --color=auto'

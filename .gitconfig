@@ -22,3 +22,6 @@
     # Utiliza el programa diff3 para hacer diff en merges y mostrar tambien
     # el ancestro comun ademas de las dos versiones a mergear
     conflictstyle = diff3
+
+[status]
+    showUntrackedFiles = all
