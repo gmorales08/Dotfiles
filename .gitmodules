@@ -1,3 +1,0 @@
-[submodule ".config/polybar/custom-scripts/network/speedtest-cli"]
-	path = .config/polybar/custom-scripts/network/speedtest-cli
-	url = git@github.com:sivel/speedtest-cli.git

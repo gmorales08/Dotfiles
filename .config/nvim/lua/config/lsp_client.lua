@@ -9,9 +9,9 @@ if ok_cmp_lsp then
   local capabilities = cmp_lsp.default_capabilities()
   capabilities.textDocument.completion.completionItem.snippetSupport = false
 
-  vim.lsp.config("*", {
-    capabilities = capabilities,
-  })
+--    vim.lsp.config("*", {
+	--    capabilities = capabilities,
+	-- })
 end
 
 local float_opts = {
@@ -22,8 +22,9 @@ local float_opts = {
   anchor_bias = "above",
 }
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, float_opts)
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, float_opts)
+local function open_hover()
+  vim.lsp.buf.hover(float_opts)
+end
 
 local signature_group = api.nvim_create_augroup("LspMultiSignatureHelp", { clear = true })
 local signature_sessions = {}
@@ -269,7 +270,7 @@ api.nvim_create_autocmd("BufWritePre", {
 -- Mappings
 vim.keymap.set({"n", "v"}, "<Leader>ds", vim.diagnostic.open_float, { desc = "Show diagnostic" })
 vim.keymap.set({"n", "v"}, "<Leader>fx", vim.lsp.buf.code_action, { desc = "LSP fix" })
-vim.keymap.set("n", "<C-Space>", vim.lsp.buf.hover, { desc = "LSP hover" })
+vim.keymap.set("n", "<C-Space>", open_hover, { desc = "LSP hover" })
 vim.keymap.set("i", "<C-Space>", open_multi_signature_help, { desc = "LSP signature help (multi)" })
 
 
