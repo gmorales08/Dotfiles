@@ -12,3 +12,5 @@ source ~/.bash/vendor/sdkman.bash
 ulimit -c unlimited # Para poder generar core dumps
 
 echo ".bashrc loaded"
+
+export QSYS_ROOTDIR="/home/gabriel/altera_lite/25.1std/quartus/sopc_builder/bin"

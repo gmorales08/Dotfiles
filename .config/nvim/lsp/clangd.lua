@@ -11,7 +11,7 @@ return {
     "--pch-storage=memory",
     "--log=verbose",
     "--pretty"
-},
+    },
     filetypes = { 'c', 'cpp', 'cuda' },
 	root_markers = {
     '.clangd',

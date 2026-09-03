@@ -6,10 +6,10 @@ return {
     local function on_attach(bufnr)
       local api = require('nvim-tree.api')
 
-      -- Keymaps por defecto
+      -- Default keymaps
       api.config.mappings.default_on_attach(bufnr)
 
-      -- Keymap personalizado: m abre el menu (g?)
+      -- m to open the menu help
       vim.keymap.set({'n','v'}, 'm', api.tree.toggle_help, { buffer = bufnr, desc = 'Toggle help menu' })
     end
 
@@ -43,7 +43,7 @@ return {
             },
           },
         },
-        add_trailing = true, -- Anade "/" al final de los directorios
+        add_trailing = true, -- Add "/" at the end of the directories
       },
       filters = {
         dotfiles = false,

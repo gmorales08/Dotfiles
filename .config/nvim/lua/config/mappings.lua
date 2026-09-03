@@ -40,7 +40,7 @@ vim.keymap.set('n', '<Leader>def', '<C-]>', opts)
 vim.keymap.set('n', '<Leader>fed', '<C-T>', opts)
 
 -- Cambiar de colorscheme
-vim.keymap.set('n', '<Leader>csd', ':set background=dark<CR>:colorscheme colorscheme<CR>', opts)
+vim.keymap.set('n', '<Leader>csd', ':set background=dark<CR>:colorscheme gmorales_nvim<CR>', opts)
 vim.keymap.set('n', '<Leader>csl', ':set background=light<CR>:colorscheme lunaperche<CR>', opts)
 vim.keymap.set('n', '<Leader>cs8', ':set background=dark<CR>:colorscheme gmorales8colors<CR>', opts)
 
@@ -93,7 +93,11 @@ vim.cmd([[
       \ "leftabove vsplit " . expand("%:r") . ".cpp")<CR><CR>
 ]])
 
-
+-- Plugin mappings
+-- nvim-lint: Map to lint manually
+vim.keymap.set("n", "<leader>lin", function()
+    require("lint").try_lint()
+end, { desc = "Trigger linting for current file" })
 
 
 
