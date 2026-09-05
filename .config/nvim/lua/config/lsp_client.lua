@@ -2,17 +2,23 @@
 local api = vim.api
 local lsp = vim.lsp
 local util = require("vim.lsp.util")
-local ms = require("vim.lsp.protocol").Methods
+local signature_help_method = "textDocument/signatureHelp"
 
 local ok_cmp_lsp, cmp_lsp = pcall(require, "cmp_nvim_lsp")
+local capabilities
 if ok_cmp_lsp then
-  local capabilities = cmp_lsp.default_capabilities()
-  capabilities.textDocument.completion.completionItem.snippetSupport = false
-
-  vim.lsp.config("*", {
-    capabilities = capabilities,
-  })
+  capabilities = cmp_lsp.default_capabilities()
+else
+  capabilities = vim.lsp.protocol.make_client_capabilities()
 end
+
+-- Snippets are disabled by default. Servers that need them can override this
+-- capability in their own lsp/<server>.lua configuration.
+capabilities.textDocument.completion.completionItem.snippetSupport = false
+
+vim.lsp.config("*", {
+  capabilities = capabilities,
+})
 
 local float_opts = {
   border = "rounded",
@@ -22,9 +28,9 @@ local float_opts = {
   anchor_bias = "above",
 }
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, float_opts)
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, float_opts)
-
+-- Neovim's native signature window shows one overload at a time. This custom
+-- implementation collects every signature returned by all attached LSPs and
+-- displays them together, highlighting the active parameter in each overload.
 local signature_group = api.nvim_create_augroup("LspMultiSignatureHelp", { clear = true })
 local signature_sessions = {}
 local signature_ns = api.nvim_create_namespace("LspMultiSignatureActiveParameter")
@@ -130,7 +136,7 @@ local function open_multi_signature_help(opts)
   session.pending = true
   signature_sessions[bufnr] = session
 
-  lsp.buf_request_all(bufnr, ms.textDocument_signatureHelp, client_positional_params(), function(results, ctx)
+  lsp.buf_request_all(bufnr, signature_help_method, client_positional_params(), function(results, ctx)
     local current = signature_sessions[ctx.bufnr]
     if current then
       current.pending = false
@@ -181,7 +187,7 @@ local function open_multi_signature_help(opts)
 
     local prev_win = current and current.win or nil
     local config = vim.tbl_extend("force", vim.deepcopy(float_opts), {
-      focus_id = ms.textDocument_signatureHelp .. ".multi",
+      focus_id = signature_help_method .. ".multi",
       title = string.format("Signature Help (%d shown) - %s", total, table.concat(client_names, ", ")),
       focusable = false,
       close_events = { "InsertLeave", "BufLeave", "BufHidden" },
@@ -226,51 +232,68 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "BufLeave", "BufHidden" }, {
   end,
 })
 
--- LSP
-vim.lsp.enable({
-    -- C, C++
-    "clangd"
-})
-
 vim.diagnostic.config({
   underline = false, -- underline the problematic code
   virtual_text = {
-	current_line = false,
+    -- `current_line` is intentionally omitted: nil shows diagnostics on every line.
     spacing = 1,
     prefix = "!",
-    source = false,
-	virt_text = true,
-	virt_text_pos = 'eol',
-	virt_text_hide = false,
+    source = true,
+    virt_text_pos = "eol",
+    virt_text_hide = false,
   },
   virtual_lines = false,
   signs = true,
   float = {
-		scope = 'line', -- 'cursor'
-		severity_sort = true,
-		source = true,
+    scope = "line", -- "cursor"
+    severity_sort = true,
+    source = true,
   },
   update_in_insert = false,
   severity_sort = true,
 })
 
--- Format on save
-local format_group = api.nvim_create_augroup("LspFormatOnSave", { clear = true })
-api.nvim_create_autocmd("BufWritePre", {
-  group = format_group,
+-- Mappings
+-- Diagnostics can also come from nvim-lint, so this mapping remains global.
+vim.keymap.set({ "n", "v" }, "<Leader>ds", vim.diagnostic.open_float, { desc = "Show diagnostic" })
+
+-- LSP actions are local to attached buffers, so they do not appear where no
+-- language server is active.
+local lsp_mappings_group = api.nvim_create_augroup("LspBufferMappings", { clear = true })
+api.nvim_create_autocmd("LspAttach", {
+  group = lsp_mappings_group,
   callback = function(ev)
-    vim.lsp.buf.format({
-      bufnr = ev.buf,
-      timeout_ms = 10000,
-    })
+    local client = lsp.get_client_by_id(ev.data.client_id)
+    if not client then
+      return
+    end
+
+    local function map(modes, lhs, rhs, desc)
+      vim.keymap.set(modes, lhs, rhs, { buffer = ev.buf, desc = desc })
+    end
+
+    if client:supports_method("textDocument/rename", ev.buf) then
+      map("n", "<Leader>ren", lsp.buf.rename, "LSP rename")
+    end
+
+    if client:supports_method("textDocument/codeAction", ev.buf) then
+      map({ "n", "v" }, "<Leader>fx", lsp.buf.code_action, "LSP fix")
+    end
+
+    if client:supports_method("textDocument/hover", ev.buf) then
+      map("n", "<C-Space>", function()
+        lsp.buf.hover(float_opts)
+      end, "LSP hover")
+    end
+
+    if client:supports_method(signature_help_method, ev.buf) then
+      map("i", "<C-Space>", open_multi_signature_help, "LSP signature help (all overloads)")
+    end
   end,
 })
 
--- Mappings
-vim.keymap.set({"n", "v"}, "<Leader>ds", vim.diagnostic.open_float, { desc = "Show diagnostic" })
-vim.keymap.set({"n", "v"}, "<Leader>fx", vim.lsp.buf.code_action, { desc = "LSP fix" })
-vim.keymap.set("n", "<C-Space>", vim.lsp.buf.hover, { desc = "LSP hover" })
-vim.keymap.set("i", "<C-Space>", open_multi_signature_help, { desc = "LSP signature help (multi)" })
-
-
-
+-- Enable servers only after all LspAttach handlers have been registered.
+vim.lsp.enable({
+  "clangd",
+  "neocmakelsp",
+})

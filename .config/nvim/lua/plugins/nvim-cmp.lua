@@ -14,6 +14,13 @@ return {
     vim.opt.pumheight = 7
 
     cmp.setup({
+      -- Neovim provides the snippet engine. Only NeoCMakeLSP advertises
+      -- snippetSupport in this configuration.
+      snippet = {
+        expand = function(args)
+          vim.snippet.expand(args.body)
+        end,
+      },
       mapping = cmp.mapping.preset.insert({
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
@@ -22,6 +29,8 @@ return {
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
+          elseif vim.snippet.active({ direction = 1 }) then
+            vim.snippet.jump(1)
           else
             fallback()
           end
@@ -29,6 +38,8 @@ return {
         ["<S-Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
+          elseif vim.snippet.active({ direction = -1 }) then
+            vim.snippet.jump(-1)
           else
             fallback()
           end
@@ -51,6 +62,12 @@ return {
 
     cmp.setup.cmdline(":", {
       mapping = cmp.mapping.preset.cmdline(),
+      window = {
+        -- Expand command-line completion to all available vertical space.
+        completion = {
+          max_height = 0,
+        },
+      },
       sources = cmp.config.sources({
         { name = "path" },
       }, {

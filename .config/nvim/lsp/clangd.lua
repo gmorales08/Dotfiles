@@ -9,10 +9,9 @@ return {
     "--header-insertion-decorators",
     "--enable-config",
     "--pch-storage=memory",
-    "--log=verbose",
-    "--pretty"
+    "--log=error"
     },
-    filetypes = { 'c', 'cpp', 'cuda' },
+    filetypes = { 'c', 'cpp' },
 	root_markers = {
     '.clangd',
     '.clang-tidy',

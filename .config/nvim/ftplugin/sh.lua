@@ -1,2 +1,1 @@
--- Treesitter
 vim.treesitter.start()

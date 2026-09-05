@@ -1,5 +1,6 @@
 return {
-    'nvim-telescope/telescope.nvim', version = '*',
+    'nvim-telescope/telescope.nvim',
+    version = '*',
     lazy = false,
     dependencies = {
         'nvim-lua/plenary.nvim',
@@ -28,8 +29,9 @@ return {
                 sorting_strategy = "descending", -- Descending for bottom prompt
 
                 -- Sorting and filtering performance
-                file_sorter = require('telescope.sorters').get_fzf_sorter,
-                generic_sorter = require('telescope.sorters').get_fzf_sorter,
+                -- Replaced by telescope-fzf-native
+                --file_sorter = require('telescope.sorters').get_fzf_sorter,
+                --generic_sorter = require('telescope.sorters').get_fzf_sorter,
             },
             pickers = {
                 find_files = {
@@ -55,7 +57,8 @@ return {
                 file_ignore_patterns = {
                     "%.git/",
                     "%.cache/",
-                    "%build/"
+                    "^build[\\/]",
+                    "[\\/]build[\\/]"
                 }
             })
         end, { desc = 'Telescope find files (incluye dotfiles)' })
@@ -66,11 +69,13 @@ return {
                 file_ignore_patterns = {
                     "%.git/",
                     "%.cache/",
-                    "%build/"
+                    "^build[\\/]",
+                    "[\\/]build[\\/]"
                 }
             })
         end, { desc = 'Telescope live grep' })
         vim.keymap.set('n', '<leader><tab>', builtin.buffers, { desc = 'Telescope buffers' })
+        -- Intentionally replaces Neovim's native <C-f> page-forward mapping.
         vim.keymap.set('n', '<C-f>', builtin.current_buffer_fuzzy_find, { desc = 'Telescope current buffer' })
     end
 }

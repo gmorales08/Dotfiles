@@ -142,7 +142,7 @@ WarningMsg = {fg = "#FFD900", bg = "#1C1C1C", bold = true},
 -- colorschemes generally want to do this
 vim.cmd("highlight clear")
 vim.cmd("set t_Co=256")
-vim.cmd("let g:colors_name='my_theme'")
+vim.cmd("let g:colors_name='gmorales_nvim'")
 
 -- apply highlight groups
 for group, attrs in pairs(colors) do

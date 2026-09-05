@@ -1,4 +1,4 @@
---let mapleader=" " → vim.g.mapleader = " "
+-- Leader keys are configured once, near the start of init.lua.
 --nmap → vim.keymap.set('n', ...)
 --imap → vim.keymap.set('i', ...)
 --map → vim.keymap.set('', ...)
@@ -6,10 +6,6 @@
 --xnoremap → vim.keymap.set('x', ...)
 --autocmd → vim.api.nvim_create_autocmd()
 --Los mappings específicos de FileType usan { buffer = true } para que solo apliquen al buffer actual
-
-
-vim.g.mapleader = " "
-
 -- Opciones comunes
 local opts = { noremap = true, silent = false }
 
@@ -54,13 +50,9 @@ vim.keymap.set('x', '<Leader>ed', ':w !$EDITOR_TEXTO -<CR><CR>', opts)
 
 -- Escribir el patron de substitucion de texto
 vim.keymap.set('n', '<Leader>sub', ':%s/\\<antigua\\>/nueva/g"confirmacion:c', opts)
--- Rename por LSP
-vim.keymap.set('n', '<Leader>ren', ':lua vim.lsp.buf.rename()<CR>', opts)
 
--- Visualizar y editar un binario con xxd
-vim.keymap.set('n', '<Leader>hex', ':set binary<CR>:%!xxd<CR>:set filetype=xxd<CR>', opts)
--- Revertir la visualizacion del binario
-vim.keymap.set('n', '<Leader>xeh', ':%!xxd -r<CR>:set binary<CR>:set filetype=<CR>', opts)
+-- Open a read-only hexadecimal view without modifying the source buffer.
+require("config.xxd").setup()
 
 
 -- Comentar o descomentar un trozo de codigo (se hace de forma nativa desde nvim 0.10)
@@ -78,28 +70,3 @@ vim.keymap.set('n', '<C-h>', '<C-w>h', { silent = true, desc = 'Window left' })
 vim.keymap.set('n', '<C-j>', '<C-w>j', { silent = true, desc = 'Window down' })
 vim.keymap.set('n', '<C-k>', '<C-w>k', { silent = true, desc = 'Window up' })
 vim.keymap.set('n', '<C-l>', '<C-w>l', { silent = true, desc = 'Window right' })
-
-
--- Mapping para C y C++. Si lo pongo en ftplugin me da conflicto
-vim.cmd([[
-  autocmd FileType c nmap <silent> <Leader>vh :exe (expand("%:e") == "c" ?
-      \ "rightbelow vsplit " . expand("%:r") . ".h" :
-      \ "leftabove vsplit " . expand("%:r") . ".c")<CR><CR>
-]])
-
-vim.cmd([[
-  autocmd FileType cpp nmap <silent> <Leader>vh :exe (expand("%:e") == "cpp" ?
-      \ "rightbelow vsplit " . expand("%:r") . ".hpp" :
-      \ "leftabove vsplit " . expand("%:r") . ".cpp")<CR><CR>
-]])
-
--- Plugin mappings
--- nvim-lint: Map to lint manually
-vim.keymap.set("n", "<leader>lin", function()
-    require("lint").try_lint()
-end, { desc = "Trigger linting for current file" })
-
-
-
-
-

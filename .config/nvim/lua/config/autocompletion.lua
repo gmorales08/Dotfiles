@@ -1,1 +1,0 @@
--- Deprecated: completion is configured in lua/plugins/nvim-cmp.lua.

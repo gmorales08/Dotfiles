@@ -1,9 +1,12 @@
--- LSP
-vim.lsp.enable('clangd')
--- Treesitter
 vim.treesitter.start()
--- Folds
--- vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
--- vim.wo[0][0].foldmethod = 'expr'
--- Indentation
--- vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+
+local header_extensions = require("config.filetypes").cpp_header_extensions()
+
+require("config.header_switch").setup({
+  source_extensions = { "cpp", "cc", "cxx" },
+  header_extensions = header_extensions,
+})
+
+require("config.macros").setup({
+  header_extensions = header_extensions,
+})

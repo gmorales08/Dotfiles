@@ -1,89 +1,82 @@
 -- TAB BAR
--- Función que genera una tabbar cuando se abren buffers en tabs.
--- Solo muestra buffers activos
--- Los títulos de los tabs muestran el nombre del fichero y un * si está modificado
--- Se puede pulsar sobre los tabs para acceder a ellos
+-- Shows the buffers visible in each tab page.
+-- A trailing * marks tabs that contain a modified buffer.
+-- Tab labels can be clicked to switch to their tab page.
 
 local M = {}
 
-function M.my_tab_line()
-  local s = ''
+local function escape_tabline_text(text)
+  -- The tabline uses statusline syntax, where % starts a format item.
+  -- strtrans() also makes control characters in file names visible and harmless.
+  return (vim.fn.strtrans(text):gsub("%%", "%%%%"))
+end
 
-  -- loop through each tab page
-  for i = 1, vim.fn.tabpagenr('$') do
-    -- set the tab page number (for mouse clicks)
-    s = s .. '%' .. i .. 'T'
+local function tab_label(tabnr)
+  local names = {}
+  local seen_buffers = {}
+  local has_modified_buffer = false
 
-    -- set color for tab number and title
-    if i == vim.fn.tabpagenr() then
-      s = s .. '%#TabLineSel#'
-    else
-      s = s .. '%#TabLine#'
-    end
+  -- tabpagebuflist() returns one buffer per window, so the same buffer may
+  -- appear more than once when it is displayed in multiple splits.
+  for _, bufnr in ipairs(vim.fn.tabpagebuflist(tabnr)) do
+    if not seen_buffers[bufnr] then
+      seen_buffers[bufnr] = true
 
-    -- set page number string
-    s = s .. ' ' .. i .. ''
+      local buftype = vim.bo[bufnr].buftype
+      local modifiable = vim.bo[bufnr].modifiable
 
-    -- get buffer names and statuses
-    local n = ''  -- temp str for buf names
-    local m = 0   -- &modified counter
-    local buflist = vim.fn.tabpagebuflist(i)
-
-    -- loop through each buffer in a tab
-    for _, b in ipairs(buflist) do
-      local buftype = vim.fn.getbufvar(b, "&buftype")
-      local modifiable = vim.fn.getbufvar(b, "&modifiable")
-
-      if buftype == 'help' then
-        -- let n .= '[H]' .. vim.fn.fnamemodify(vim.fn.bufname(b), ':t:s/.txt$//')
-      elseif buftype == 'quickfix' then
-        -- let n .= '[Q]'
-      elseif modifiable == 1 then
-        n = n .. vim.fn.fnamemodify(vim.fn.bufname(b), ':t') .. ', '
+      if buftype ~= "help" and buftype ~= "quickfix" and modifiable then
+        local name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), ":t")
+        if name ~= "" then
+          names[#names + 1] = escape_tabline_text(name)
+        end
       end
 
-      if vim.fn.getbufvar(b, "&modified") == 1 then
-        m = m + 1
+      if vim.bo[bufnr].modified then
+        has_modified_buffer = true
       end
     end
-
-    -- remove trailing ', '
-    n = n:gsub(', $', '')
-
-    -- add modified label
-    if m > 0 then
-      n = n .. '*'
-    end
-
-    if i == vim.fn.tabpagenr() then
-      s = s .. ' %#TabLineSel#'
-    else
-      s = s .. ' %#TabLine#'
-    end
-
-    -- add buffer names
-    if n == '' then
-      s = s .. '[New]'
-    else
-      s = s .. n
-    end
-
-    -- switch to no underlining and add final space
-    s = s .. ' '
   end
 
-  s = s .. '%#TabLineFill#%T'
+  local label = #names > 0 and table.concat(names, ", ") or "[New]"
+  if has_modified_buffer then
+    label = label .. "*"
+  end
 
-  -- right-aligned close button
-  -- if vim.fn.tabpagenr('$') > 1 then
-  --   s = s .. '%=%#TabLineFill#%999Xclose'
+  return label
+end
+
+function M.my_tab_line()
+  local parts = {}
+  local current_tab = vim.fn.tabpagenr()
+  local tab_count = vim.fn.tabpagenr("$")
+
+  for tabnr = 1, tab_count do
+    -- Associate the following label with its tab page for mouse clicks.
+    parts[#parts + 1] = "%" .. tabnr .. "T"
+
+    local highlight = tabnr == current_tab and "%#TabLineSel#" or "%#TabLine#"
+    parts[#parts + 1] = highlight
+
+    parts[#parts + 1] = " " .. tabnr
+    parts[#parts + 1] = " " .. highlight
+    parts[#parts + 1] = tab_label(tabnr)
+    parts[#parts + 1] = " "
+  end
+
+  -- Reset the click target and fill the unused part of the tabline.
+  parts[#parts + 1] = "%#TabLineFill#%T"
+
+  -- Optional right-aligned close button:
+  -- if tab_count > 1 then
+  --   parts[#parts + 1] = "%=%#TabLineFill#%999Xclose"
   -- end
 
-  return s
+  return table.concat(parts)
 end
 
 function M.setup()
-  -- Set custom tab pages line
+  -- Set the custom tab page line.
   vim.o.tabline = '%!v:lua.require("config.tabline").my_tab_line()'
 end
 
